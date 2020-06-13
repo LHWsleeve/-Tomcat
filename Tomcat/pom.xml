@@ -10,6 +10,7 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
     <module>ch01-SimpleHttp</module>
+      <module>ch02-SimpleServlet</module>
   </modules>
 
   <name>Tomcat</name>
@@ -47,6 +48,14 @@
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.8.0</version>
+<!--          maven引入第三方jar的时候必须手动加入lib目录。另外情况看我的csdn-->
+          <configuration>
+            <compilerArguments>
+              <target>14</target>
+              <source>14</source>
+              <extdirs>${project.basedir}/lib</extdirs>
+            </compilerArguments>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
