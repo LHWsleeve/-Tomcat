@@ -21,7 +21,7 @@ public class Request {
     public void parse() {
         StringBuilder request = new StringBuilder();
         int len=-1;
-        byte[] bytes = new byte[1024];
+        byte[] bytes = new byte[2048];
         try {
             len = inputStream.read(bytes);
         } catch (IOException e) {

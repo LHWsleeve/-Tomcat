@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -24,7 +25,7 @@ public class HttpServer {
 
     public static void main(String[] args) throws IOException {
         //监听10000端口
-        ServerSocket socket = new ServerSocket(10000);
+        ServerSocket socket = new ServerSocket(10000,1, InetAddress.getByName("127.0.0.1"));
         //服务器未关闭则一直循环，同步阻塞请求...NIO就算了自己写要炸裂
         while (!shutdown){
             Socket conn = socket.accept();
