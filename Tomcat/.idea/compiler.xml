@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="ch02-SimpleServlet" />
         <module name="ch01-SimpleHttp" />
+        <module name="ch02-SimpleServlet" />
       </profile>
     </annotationProcessing>
   </component>
