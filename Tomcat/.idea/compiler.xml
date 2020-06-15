@@ -8,7 +8,15 @@
         <outputRelativeToContentRoot value="true" />
         <module name="ch01-SimpleHttp" />
         <module name="ch02-SimpleServlet" />
+        <module name="ch03-composition" />
       </profile>
     </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ch01-SimpleHttp" options="-source 1.8 -target 1.8" />
+      <module name="ch02-SimpleServlet" options="-source 1.8 -target 1.8" />
+      <module name="ch03-composition" options="-source 1.8 -target 1.8" />
+    </option>
   </component>
 </project>
