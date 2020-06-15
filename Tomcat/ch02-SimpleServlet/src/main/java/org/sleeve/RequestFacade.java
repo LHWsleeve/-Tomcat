@@ -1,50 +1,27 @@
 package org.sleeve;
 
-
-import javax.servlet.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletInputStream;
+import javax.servlet.ServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 
 /**
+ *为什么有了Request还要有RequestFacade呢
+ * 因为Request的parse方法仍然要被其他内部类所使用，为了不让外部开发人员（阅读源码后，通过强转）随意的使用parse方法
+ * 所以将Request作为私有属性，放到RequestFacade里，就能保证传递给开发人员的只有RequestFacade而不会让开发人员使用到不该使用的方法
  * @author Sleeve
  * @version 1.0
- * @date 2020/6/13 17:37
+ * @date 2020/6/15 9:26
  */
-public class Request implements ServletRequest {
-    private String uri;
-    private InputStream is;
-
-    public Request(InputStream inputStream) {
-        this.is = inputStream;
-    }
-
-    public void parse() {
-        byte[] bytes = new byte[2048];
-        int len = -1;
-        try {
-            len = is.read(bytes);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        StringBuilder request = new StringBuilder();
-        request.append(new String(bytes, 0, len));
-        System.out.println(request.toString());
-        this.uri = parseUri(request.toString());
-    }
-
-    private String parseUri(String request) {
-        int firstIndex = request.indexOf('/');
-        int endIndex = request.indexOf(" ", firstIndex);
-        return request.substring(firstIndex, endIndex);
-    }
-
-    public String getUri() {
-        return this.uri;
+public class RequestFacade implements ServletRequest {
+    private Request request;
+    public RequestFacade(Request request) {
+    this.request=request;
     }
 
     @Override
