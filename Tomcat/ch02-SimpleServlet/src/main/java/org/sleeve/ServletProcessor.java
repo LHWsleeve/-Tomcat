@@ -21,7 +21,7 @@ public class ServletProcessor {
         repositoryUrl = new URL("file", null, WEB_ROOT + File.separator).toString();
         ClassLoader loader = new URLClassLoader(new URL[]{new URL(repositoryUrl)});
         // 这里要给全限定名，否则无法加载到
-        Class servletClass = loader.loadClass(uri.substring(uri.lastIndexOf("/") + 1));
+        Class servletClass = loader.loadClass("org.sleeve." + uri.substring(uri.lastIndexOf("/") + 1));
         Servlet servlet = (Servlet)servletClass.newInstance();
         try {
             servlet.service(new RequestFacade(request), new ResponseFacade(response));

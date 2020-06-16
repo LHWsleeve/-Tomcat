@@ -10,7 +10,7 @@ import java.io.InputStream;
 public class SocketInputStream extends InputStream {
 
     protected InputStream is;
-    public SocketInputStream(InputStream is, int bufferSize) {
+    public SocketInputStream(InputStream is) {
         this.is = is;
     }
 
@@ -69,7 +69,7 @@ public class SocketInputStream extends InputStream {
                 if (ch == 10) {
                     break;
                 }
-                // 虽然可以省略（因为知道它是要换行的意思），但是笔者还是想按规范的来
+                // 虽然可以省略（因为知道它是要换行的意思）
                 throw new RuntimeException("CRLF不完整，请确保每行结尾为CRLF");
             }
             sb.append((char) ch);

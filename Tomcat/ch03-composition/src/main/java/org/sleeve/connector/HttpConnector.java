@@ -1,7 +1,6 @@
 package org.sleeve.connector;
-
 import org.sleeve.processor.HttpProcessor;
-
+import javax.servlet.ServletException;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -22,7 +21,11 @@ public class HttpConnector implements Runnable {
         try{
             serverSocket= new ServerSocket(port,1, InetAddress.getByName("127.0.0.1"));
             Socket conn = serverSocket.accept();
-            processor.process(conn);
+            try {
+                processor.process(conn);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
         }catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
