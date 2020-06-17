@@ -24,9 +24,15 @@ public class verifyServlet implements Servlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         System.out.print("处理服务");
-        PrintWriter out = servletResponse.getWriter();
-        out.println("hello");
-        out.println("123");
+        servletResponse.setCharacterEncoding("utf-8");
+        servletResponse.setContentType("text/plain");
+        PrintWriter printWriter = servletResponse.getWriter();
+
+        printWriter.println("scheme:" + servletRequest.getScheme()+"</br>");
+        printWriter.println("protocol:" + servletRequest.getProtocol()+"</br>");
+        printWriter.println("------------End----------------");
+
+        printWriter.flush();
     }
 
     @Override
@@ -36,6 +42,6 @@ public class verifyServlet implements Servlet {
 
     @Override
     public void destroy() {
-        System.out.print("duang,销毁  ");
+        System.out.print("duang,销毁");
     }
 }

@@ -76,13 +76,22 @@ public class Response implements ServletResponse {
     }
 
     @Override
+    public String getContentType() {
+        return null;
+    }
+
+    @Override
     public ServletOutputStream getOutputStream() throws IOException {
         return null;
     }
 
     @Override
     public PrintWriter getWriter() throws IOException {
-        return null;
+        return new PrintWriter(os);
+    }
+    @Override
+    public void setCharacterEncoding(String s) {
+
     }
 
     @Override

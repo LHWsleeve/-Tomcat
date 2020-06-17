@@ -11,7 +11,12 @@
         <module name="ch03-composition" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="14" />
+    <bytecodeTargetLevel>
+      <module name="ch01-SimpleHttp" target="1.8" />
+      <module name="ch02-SimpleServlet" target="1.8" />
+      <module name="ch03-composition" target="14" />
+      <module name="Tomcat" target="14" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

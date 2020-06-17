@@ -1,7 +1,8 @@
 package org.sleeve;
 
 import javax.servlet.Servlet;
-import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -15,17 +16,18 @@ import static org.sleeve.HttpServer.WEB_ROOT;
  * @date 2020/6/15 8:23
  */
 public class ServletProcessor {
-    public void process(Request request, Response response) throws ClassNotFoundException, IllegalAccessException, InstantiationException, IOException {
+    public void process(Request request, Response response) throws ClassNotFoundException, IOException {
         String repositoryUrl = null;
         String uri = request.getUri();
         repositoryUrl = new URL("file", null, WEB_ROOT + File.separator).toString();
         ClassLoader loader = new URLClassLoader(new URL[]{new URL(repositoryUrl)});
-        // 这里要给全限定名，否则无法加载到
+        // 一定要是全限定名，否则无法加载到。直接去校对src.main.java.xxxx。从xxx开始的全路径
         Class servletClass = loader.loadClass("org.sleeve." + uri.substring(uri.lastIndexOf("/") + 1));
-        Servlet servlet = (Servlet)servletClass.newInstance();
+        Servlet servlet = null;
         try {
+            servlet = (Servlet)servletClass.getConstructor().newInstance();
             servlet.service(new RequestFacade(request), new ResponseFacade(response));
-        } catch (ServletException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
