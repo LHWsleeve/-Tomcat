@@ -244,10 +244,12 @@ public class HttpResponse implements HttpServletResponse {
         return this.characterEncoding;
     }
 
+    @Override
     public void setCharacterEncoding(String s) {
         this.characterEncoding = s;
     }
 
+    @Override
     public String getContentType() {
         return this.contentType;
     }
@@ -405,5 +407,25 @@ public class HttpResponse implements HttpServletResponse {
     public void setStatus(int i, String s) {
         this.status = i;
         this.message = s;
+    }
+
+    @Override
+    public int getStatus() {
+        return 0;
+    }
+
+    @Override
+    public String getHeader(String name) {
+        return null;
+    }
+
+    @Override
+    public Collection<String> getHeaders(String name) {
+        return null;
+    }
+
+    @Override
+    public Collection<String> getHeaderNames() {
+        return null;
     }
 }

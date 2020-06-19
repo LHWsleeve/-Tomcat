@@ -26,12 +26,13 @@ public class ServletProcessor {
         // 这里要给全限定名，否则无法加载到
         Class servletClass = loader.loadClass("org.sleeve." + uri.substring(uri.lastIndexOf("/") + 1));
         try {
-            Servlet servlet = (Servlet)servletClass.getConstructor().newInstance();
+            Servlet servlet = (Servlet)servletClass.getConstructor().newInstance();//
+            servlet.service(request, response);
+
         } catch (Exception e) {
             e.printStackTrace();
     }
-//        servlet.service(new RequestFacade(request), new ResponseFacade(response));
 
-//        response.finishResponse();
+        response.finishResponse();
     }
 }

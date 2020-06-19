@@ -1,3 +1,1 @@
-
-Tomcat/ch02-SimpleServlet/target/*
-Tomcat/ch01-SimpleHttp/target/*
+*.class
